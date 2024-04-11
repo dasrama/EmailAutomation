@@ -1,15 +1,12 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from models import EmailRequest
 
 app = FastAPI()
 
-class EmailRequest(BaseModel):
-    receiver: str
-    email_username: str
-    email_password: str
+
 
 @app.post("/send-email/")
 async def send_email(email_request: EmailRequest):
